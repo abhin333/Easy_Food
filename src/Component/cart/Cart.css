@@ -1,0 +1,9 @@
+.cart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(222, 33, 33, 0.79)
+}
