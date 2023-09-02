@@ -1,10 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './SplashScreen.css'
 
+
 const SplashScreen = () => {
-  return (
+const navigate=useNavigate();
+  const clickHandler=()=>{
+  navigate('/signup')
+  }
+    return (
+
     <div>
-        <div className="container">
+        <div className="containers">
             <div className="image-div">
             <div className="header-image">
                 <img src="/src/assets/image/Food.png" alt="burgger-image" />
@@ -14,11 +21,11 @@ const SplashScreen = () => {
             <div className="tittle-name">
                 <img src="/src/assets/image/Fast.. 1.png" alt="" />
             </div>
-            <div className="arrow-icon">
+            <div className="arrow-icon" onClick={clickHandler}>
                 <img src="/src/assets/image/image 1.png" alt="" />
             </div>
             <div className="bike">
-                <img src="/src/assets/image/pizza-deliver 1.png" alt="bike" />
+                <img className='bikes'src="/src/assets/image/pizza-deliver 1.png" alt="bike" />
             </div>
         </div>
            

@@ -1,18 +1,19 @@
-
 @media (max-width: 768px) {
-    .container {
-        background: linear-gradient(
-          225deg,
-          #f03434 0%,
-          #ad6969 100%,
-          rgba(205, 70, 70, 0.57) 100%
-        );
-        height: 100vh;
-        position: relative;
-        display: flex;
-        justify-content: center;
-      }
-      
+  .containers {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(
+      225deg,
+      #f03434 0%,
+      #ad6969 100%,
+      rgba(205, 70, 70, 0.57) 100%
+    );
+    overflow: hidden;
+  }
+
   .image-div {
     position: absolute;
     display: flex;
@@ -33,13 +34,18 @@
   }
   .arrow-icon {
     position: absolute;
-    top: 40rem;
+    top: 35rem;
   }
   .bike {
-    position: relative;
-    top: 49rem;
-    right: 7rem;
-    width: 159px;
-    height: 159px;
+    position: absolute;
+    top: 40rem;
+    right: 15rem;
+    width: 140px;
+    height: 140px;
+  }
+  .bikes{
+    width: 120px;
+    position:absolute;
+    height: 120px;
   }
 }

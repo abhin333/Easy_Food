@@ -6,13 +6,29 @@ import "./Item.css";
 import Burger from "./Burggers/Burger";
 import Categeory from "./Categeory/categeory";
 import Cart from "../cart/Cart";
+import { logo_api,imgapi } from "../../api";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Item = () => {
+  const navigate=useNavigate()
+  const viewCart =()=>{
+    console.log("ddd");
+    navigate('/view')
+  }
+  const [logo, setLogo] = useState(logo_api);
+  const [image,setImage]=useState(imgapi);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [name,setName]=useState('Burgger')
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
+  const categeoryHandle =(name)=>{
+    console.log("name",name);
+    setName(name)
+
+  }
   return (
     <div>
       <div className="main2">
@@ -46,19 +62,26 @@ const Item = () => {
         </div>
         <p className="categeory">Categeory...</p>
         <div className="list-items">
-          <Burger />
-          <Burger />
-          <Burger />
-
+          {logo.map((event, index) => {
+            const url = event.url;
+            const name =event.name;
+            return (
+              <div onClick={()=>categeoryHandle(name)}>
+                <Burger url={url} name={name} />
+              </div>
+            );
+          })}
         </div>
-        <span className="burgger-dis">burgger</span>
-        <div className="categeory-list">
-          <Categeory />
-          <Categeory />
-          <Categeory />
-          <Categeory />
-          <Categeory />
-          <Categeory />
+          <span className="burgger-dis">{name}</span>
+        <div className="categeory-list" onClick={viewCart}>
+          {image.map((event,index)=>{
+            return(
+              <>
+              <Categeory />
+              </>
+            )
+          })}
+          
         </div>
         <div className="ecllips">
           <div className="circle1"></div>

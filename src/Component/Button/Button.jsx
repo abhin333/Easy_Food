@@ -1,11 +1,11 @@
 import React from "react";
 import './Button.css'
 const Button = (props) => {
-  const {Login}=props
+  const {Login,onClick}=props
   return (
     <div>
         <div className="login-child2">
-          <span>{Login}</span>
+          <span onClick={onClick}>{Login}</span>
       </div>
     </div>
   );

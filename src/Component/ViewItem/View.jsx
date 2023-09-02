@@ -5,9 +5,10 @@ import './View.css'
 import Card from '../Card/Card';
 import Cart from '../cart/Cart';
 const View = () => {
+
   return (
     <div>
-        <div className="main2">
+        <div className="main3">
         <div className="header2">
           <div className="icons2">
             <ShortTextIcon/>
@@ -20,8 +21,8 @@ const View = () => {
             />
           </div>
           </div>
-          <div className="cards">
-          <Card/>
+          <div className="cards" >
+          <Card />
           </div>
           <div className="cart_new">
           <Cart/>

@@ -14,7 +14,6 @@
     align-items: center;
     width: 109px;
     height: 36px;
-    color: #fff;
     font-family: Inter;
     font-size: 12px;
     font-style: normal;
@@ -31,6 +30,8 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    color: #fff;
+
   }
   .signup{
     margin-left: 31px;
