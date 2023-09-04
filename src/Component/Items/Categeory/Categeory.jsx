@@ -1,15 +1,17 @@
 import React from 'react'
 import './Categeory.css'
 
-const Categeory = () => {
+const Categeory = (props) => {
+    const {url,name}=props
+    console.log("url",url);
   return (
     <div>
         <div className="categeory2">
             <div className="image">
-                <img src="/src/assets/image/burgger2.png" alt="burger2" />
+                <img className='imgsss' src={url} alt="burger2" />
             </div>
             <div className="name">
-                <span>zinger burger</span>
+                <span>{name}</span>
                 <span className='star'>****</span>
             </div>
             <div className="price">

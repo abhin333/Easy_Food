@@ -13,18 +13,23 @@
     right: 1.5rem;
   }
   .name {
-    position: absolute;
+    position: relative;
     top: 6rem;
     left: 1rem;
   }
   .star {
     position: absolute;
     top: 2rem;
-    right: 4rem;
+    right: 7rem;
   }
   .price {
     position: relative;
-    top: 5rem;
+    top: 3rem;
     right: 1rem;
   }
+  .imgsss{
+    width: 100px;
+    height: 100px;
+  }
+  
 }

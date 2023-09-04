@@ -1,6 +1,6 @@
 @media (max-width: 768px) {
   .main2 {
-    height:100vh;
+    height:150vh;
     display: flex;
     justify-content: center;
     /* align-items: center; */
