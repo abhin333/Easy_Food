@@ -21,21 +21,29 @@
   top: 2rem;
 }
 .img-q {
-  margin-right: 7rem;
-  width: 235px;
+  width: 200px;
+  height: 200px;
 }
 .discreption-new{
-    margin-top: 16rem;
+    margin-top: 18rem;
     margin-left: 15px;
 }
 
+@media (max-width: 768px) {
+
 .starnew{
     position: absolute;
-    top: 14rem;
-    left: 4rem;
+    top: 16rem;
+    left: 2rem;
     
 }
 .price-new{
     position: relative;
-    top: 8rem;
+    top: 5rem;
+}
+.name-new{
+  position: absolute;
+  top: 14rem;
+  left: 2rem;
+}
 }

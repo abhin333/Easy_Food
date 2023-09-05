@@ -6,8 +6,8 @@ import "./Item.css";
 import Burger from "./Burggers/Burger";
 import Categeory from "./Categeory/categeory";
 import Cart from "../cart/Cart";
-import { logo_api, imgapi } from "../../api";
-import { useNavigate } from "react-router-dom";
+import { logo_api, imgapi,pizza,chicken } from "../../api";
+import { useNavigate ,useLocation } from "react-router-dom";
 import { db } from "../../Firebase/Config/Config";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
@@ -28,7 +28,7 @@ const Item = () => {
       });
   };
 
-  const user_name = () => {};
+  
 
   const viewCart = () => {
     console.log("ddd");
@@ -36,6 +36,10 @@ const Item = () => {
   };
   const [logo, setLogo] = useState(logo_api);
   const [image, setImage] = useState(imgapi);
+  const [chickenLogo,SetChickenLogo]=useState(chicken);
+  const [pizzaLogo,setPizzaLogo]=useState(pizza);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [name, setName] = useState("Burgger");
   const handleChange = (event) => {
@@ -45,6 +49,11 @@ const Item = () => {
     console.log("name", name);
     setName(name);
   };
+  const clcikHandler=(event,index)=>{
+    navigate("/view",{ state: {event} });
+    console.log("ttttttttt",event);
+  }
+  
   return (
     <div>
       <div className="main2">
@@ -80,28 +89,50 @@ const Item = () => {
           </Row>
         </div>
         <p className="categeory">Categeory...</p>
-        <div className="list-items">
+        <div className="list-items" >
           {logo.map((event, index) => {
             const url = event.url;
             const name = event.name;
             return (
-              <div onClick={() => categeoryHandle(name)}>
-                <Burger url={url} name={name} />
+              <div onClick={() => categeoryHandle(name) }>
+                <Burger url={url} name={name}  isActive={index} data={logo}/>
               </div>
             );
           })}
         </div>
         <span className="burgger-dis">{name}</span>
-        <div className="categeory-list" onClick={viewCart}>
-          {image.map((event, index) => {
+        <div className="categeory-list" >
+          {name==="Burgger"?image.map((event, index) => {
             const url = event.url;
             const name = event.name;
+            const price=event.price;
             return (
-              <>
-                <Categeory url={url} name={name} />
-              </>
+              <div onClick={()=>clcikHandler(event,index)}>
+                <Categeory url={url} name={name} price={price}  />
+              </div>
             );
-          })}
+          }):''}
+          {name==="Chicken"?chickenLogo.map((event, index) => {
+            const url = event.url;
+            const name = event.name;
+            const price=event.price;
+
+            return (
+              <div onClick={()=>clcikHandler(event,index)}>
+                <Categeory url={url} name={name} price={price}/>
+              </div>
+            );
+          }):''}
+          {name==="Pizza"?pizzaLogo.map((event, index) => {
+            const url = event.url;
+            const name = event.name;
+            const price=event.price;
+            return (
+              <div onClick={()=>clcikHandler(event,index)}>
+                <Categeory url={url} name={name} price={price} />
+              </div>
+            );
+          }):''}
         </div>
         <div className="ecllips">
           <div className="circle1"></div>

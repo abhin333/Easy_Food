@@ -2,11 +2,11 @@ import React from 'react'
 import './Categeory.css'
 
 const Categeory = (props) => {
-    const {url,name}=props
-    console.log("url",url);
+    const {url,name,price}=props
+    
   return (
     <div>
-        <div className="categeory2">
+        <div className="categeory2" >
             <div className="image">
                 <img className='imgsss' src={url} alt="burger2" />
             </div>
@@ -15,8 +15,8 @@ const Categeory = (props) => {
                 <span className='star'>****</span>
             </div>
             <div className="price">
-                <p>$12</p>
-            </div>
+                <p className='price-mark'>{price}</p>
+            </div> 
         </div>
     </div>
   )

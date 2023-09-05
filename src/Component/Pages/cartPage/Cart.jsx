@@ -1,10 +1,19 @@
-import React from 'react'
+import React,{createContext} from 'react'
+import { useLocation } from 'react-router-dom';
 import View from '../../ViewItem/View'
 
-const Cart = () => {
+
+export const MyContext = createContext();
+const Cart = ({children}) => {
+
+  const location = useLocation();
+  const  objectToPass  = location.state.event
+  console.log("AAFGUYDFGAD",objectToPass);
   return (
     <div>
-        <View/>
+      <MyContext.Provider value={{objectToPass}}>
+        <View/> 
+      </MyContext.Provider>
     </div>
   )
 }

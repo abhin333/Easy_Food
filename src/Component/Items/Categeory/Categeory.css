@@ -26,10 +26,14 @@
     position: relative;
     top: 3rem;
     right: 1rem;
+    
   }
   .imgsss{
     width: 100px;
     height: 100px;
+  }
+  .price-mark{
+    font-weight: 700;
   }
   
 }

@@ -1,7 +1,7 @@
 export const logo_api = [
     {
       "id": 1,
-      "name": "Burger",
+      "name": "Burgger",
       "url": "./src/assets/logo/burgger.png"
     },
     {
@@ -20,32 +20,38 @@ export const logo_api = [
  export const imgapi=[
     {
       "id": 1,
-      "name": "burger",
+      "name": "Burger",
+      "price":"$12",
       "url": "./src/assets/image/burgger2.png"
     },
     {
         "id": 2,
-        "name": "veg burger",
+        "name": "Veg burger",
+        "price":"$18",
         "url": "./src/assets/image/burgger3.png"
       },
       {
         "id": 3,
-        "name": "eag burgger",
+        "name": "Eag Burgger",
+        "price":"$11",
         "url": "./src/assets/image/burgger3.png"
       },
       {
         "id": 4,
-        "name": "burgger",
+        "name": "Burgger",
+        "price":"$12",
         "url":  "./src/assets/image/burgger2.png"
       },
       {
         "id": 5,
-        "name": "egg burgger",
+        "name": "Egg Burgger",
+        "price":"$10",
         "url": "./src/assets/image/burgger3.png"
       },
       {
         "id": 6,
-        "name": "burgger",
+        "name": "Burgger",
+        "price":"$12",
         "url": "./src/assets/image/burgger3.png"
       }
   ]
@@ -54,32 +60,39 @@ export const logo_api = [
   export const pizza=[
     {
       "id": 1,
-      "name": "pizza",
+      "name": "Pizza",
+      "price":"$25",
+
       "url": "./src/assets/image/pizza (1).png"
     },
     {
         "id": 2,
-        "name": "veg pizza",
+        "price":"$25",
+        "name": "Veg Pizza",
         "url": "./src/assets/image/pizza (1).png"
       },
       {
         "id": 3,
-        "name": "egg pizza",
+        "price":"$28",
+        "name": "Egg Pizza",
         "url": "./src/assets/image/pizza (2).png"
       },
       {
         "id": 4,
-        "name": "pizza",
+        "name": "Pizza",
+        "price":"$25",
+
         "url":  "./src/assets/image/pizza (3).png"
       },
       {
         "id": 5,
-        "name": "egg pizza",
+        "name": "Egg Pizza",
+        "price":"$25",
         "url": "./src/assets/image/pizza (4).png"
       },
       {
         "id": 6,
-        "name": "burgger",
+        "name": "Burgger",
         "url": "./src/assets/image/pizza (5).png"
       }
   ]
@@ -88,32 +101,38 @@ export const logo_api = [
   export const chicken=[
     {
       "id": 1,
-      "name": "chicken",
+      "name": "Chicken",
+      "price":"$25",
       "url": "./src/assets/image/chicken (1).jpg"
     },
     {
         "id": 2,
-        "name": "chicken fry",
-        "url": "./src/assets/image/chicken (2).jpg"
+        "name": "Chicken Fry",
+        "price":"$25",
+        "url": "./src/assets/image/chicken (3).jpg"
       },
       {
         "id": 3,
-        "name": "chicken fry",
+        "price":"$25",
+        "name": "Chicken Fry",
         "url": "./src/assets/image/chicken (3).jpg"
       },
       {
         "id": 4,
-        "name": "chicken fry",
+        "price":"$27",
+        "name": "Chicken Fry",
         "url": "./src/assets/image/chicken (1).jpg"
       },
       {
         "id": 4,
-        "name": "chicken fry",
-        "url": "./src/assets/image/chicken (2).jpg"
+        "price":"$25",
+        "name": "Chicken Fry",
+        "url": "./src/assets/image/chicken (3).jpg"
       },
       {
         "id": 6,
-        "name": "chicken fry",
-        "url": "./src/assets/image/chicken (3).jpg"
+        "price":"$22",
+        "name": "Chicken Fry",
+        "url": "./src/assets/image/chicken (1).jpg"
       },
   ]
