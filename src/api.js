@@ -103,36 +103,36 @@ export const logo_api = [
       "id": 1,
       "name": "Chicken",
       "price":"$25",
-      "url": "./src/assets/image/chicken (1).jpg"
+      "url": "./src/assets/image/chicken (1).png"
     },
     {
         "id": 2,
         "name": "Chicken Fry",
         "price":"$25",
-        "url": "./src/assets/image/chicken (3).jpg"
+        "url": "./src/assets/image/chicken (2).png"
       },
       {
         "id": 3,
         "price":"$25",
         "name": "Chicken Fry",
-        "url": "./src/assets/image/chicken (3).jpg"
+        "url": "./src/assets/image/chicken (3).png"
       },
       {
         "id": 4,
         "price":"$27",
         "name": "Chicken Fry",
-        "url": "./src/assets/image/chicken (1).jpg"
+        "url": "./src/assets/image/chicken (1).png"
       },
       {
         "id": 4,
         "price":"$25",
         "name": "Chicken Fry",
-        "url": "./src/assets/image/chicken (3).jpg"
+        "url": "./src/assets/image/chicken (3).png"
       },
       {
         "id": 6,
         "price":"$22",
         "name": "Chicken Fry",
-        "url": "./src/assets/image/chicken (1).jpg"
+        "url": "./src/assets/image/chicken (2).png"
       },
   ]
