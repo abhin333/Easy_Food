@@ -10,6 +10,7 @@ import { logo_api, imgapi,pizza,chicken } from "../../api";
 import { useNavigate ,useLocation } from "react-router-dom";
 import { db } from "../../Firebase/Config/Config";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { motion } from "framer-motion";
 
 const Item = () => {
 
@@ -56,7 +57,11 @@ const Item = () => {
   
   return (
     <div>
-      <div className="main2">
+      <motion.div className="main2"
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      transition={{delay:.100,duration:2,type:'tween'}}
+      >
         <div className="header2">
           <div className="icons2">
             <ShortTextIcon />
@@ -89,7 +94,12 @@ const Item = () => {
           </Row>
         </div>
         <p className="categeory">Categeory...</p>
-        <div className="list-items" >
+        <motion.div className="list-items" 
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{delay:.10,duration:2}}
+        
+        >
           {logo.map((event, index) => {
             const url = event.url;
             const name = event.name;
@@ -99,9 +109,14 @@ const Item = () => {
               </div>
             );
           })}
-        </div>
+        </motion.div>
         <span className="burgger-dis">{name}</span>
-        <div className="categeory-list" >
+        <motion.div className="categeory-list"
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{delay:.30,duration:2}}
+        
+        >
           {name==="Burgger"?image.map((event, index) => {
             const url = event.url;
             const name = event.name;
@@ -133,7 +148,7 @@ const Item = () => {
               </div>
             );
           }):''}
-        </div>
+        </motion.div>
         <div className="ecllips">
           <div className="circle1"></div>
           <div className="circle2"></div>
@@ -143,7 +158,7 @@ const Item = () => {
         <div className="cart-pic">
           <Cart />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

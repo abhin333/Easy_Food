@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './SplashScreen.css'
+import { motion } from "framer-motion"
 
 
 const SplashScreen = () => {
@@ -11,7 +12,13 @@ const navigate=useNavigate();
     return (
 
     <div>
-        <div className="containers">
+        <motion.div className="containers"
+        initial={{x:'-100vw'}}
+        animate={{x:0}}
+        transition={{delay:.1,type:'spring',stiffness:120}}
+
+        >
+            
             <div className="image-div">
             <div className="header-image">
                 <img src="/src/assets/image/Food.png" alt="burgger-image" />
@@ -21,13 +28,17 @@ const navigate=useNavigate();
             <div className="tittle-name">
                 <img src="/src/assets/image/Fast.. 1.png" alt="" />
             </div>
-            <div className="arrow-icon" onClick={clickHandler}>
+            <motion.div className="arrow-icon" onClick={clickHandler}
+            initial={{x:'-250'}}
+            animate={{x:0}}
+            transition={{delay:.3,duration:5,type:'spring'}}
+            >
                 <img src="/src/assets/image/image 1.png" alt="" />
-            </div>
+            </motion.div>
             <div className="bike">
                 <img className='bikes'src="/src/assets/image/pizza-deliver 1.png" alt="bike" />
             </div>
-        </div>
+        </motion.div>
            
         
     </div>

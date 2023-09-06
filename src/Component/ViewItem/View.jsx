@@ -5,18 +5,24 @@ import './View.css'
 import Card from '../Card/Card';
 import Cart from '../cart/Cart';
 import { useNavigate } from 'react-router-dom';
+import {motion } from 'framer-motion';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const View = () => {
+
  const navigate= useNavigate()
 const goHome=()=>{
 navigate('/items')
 }
 
-  
 
   return (
     <div>
-        <div className="main3">
+        <motion.div className="main3"
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{duration:2}}
+        >
         <div className="header2">
           <div className="icons2" onClick={goHome}>
             <ShortTextIcon/>
@@ -25,17 +31,21 @@ navigate('/items')
             <Avatar
               sizes="12px"
               alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
+              // src="/static/images/avatar/1.jpg"
             />
           </div>
           </div>
           <div className="cards" >
           <Card />
           </div>
-          <div className="cart_new">
+          <motion.div className="cart_new"
+          initial={{x:'-100vw'}}
+          animate={{x:0}}
+          transition={{delay:1,duration:2,type:'spring'}}
+          >
           <Cart/>
-          </div>
-          </div>
+          </motion.div>
+          </motion.div>
 
     </div>
   )

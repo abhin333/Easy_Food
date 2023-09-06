@@ -11,8 +11,12 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../Firebase/Config/Config";
 import { collection, addDoc } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     mobileno: "",
@@ -21,6 +25,25 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  const [show, setShow] = useState(false);
+  const [shows,setShows]=useState(false)
+
+
+  //password
+const passwordShows=()=>{
+  setShow(true)
+}
+const passwordUnShows=()=>{
+  setShow(false)
+}
+// confirm passworde
+  const passwordView = () => {
+    setShows(true);
+  };
+  const passwordUnview = () => {
+    setShows(false);
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log("name", name, value);
@@ -28,29 +51,30 @@ const Signup = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (formData.password !== formData.confirmPassword) {
       alert("Password and Confirm Password do not match.");
       return;
     }
-  
+
     try {
       const userAdded = await addUserToFirestore();
       if (userAdded) {
         const userCreated = await createUserWithFirebase();
         if (userCreated) {
-          console.log("User created successfully.");
+          alert("User created successfully.");
+          navigate("/login");
         } else {
-          console.error("Failed to create user with Firebase.");
+          alert("This email is already used, or wrong email.");
         }
       } else {
         console.error("Failed to add user to Firestore.");
       }
     } catch (error) {
-      alert("Error: " + error.message);
+      alert("Error: " + error);
     }
   };
-  
+
   const addUserToFirestore = async () => {
     try {
       const docRef = await addDoc(collection(db, "user"), {
@@ -65,17 +89,17 @@ const Signup = () => {
       return false;
     }
   };
-  
+
   const createUserWithFirebase = async () => {
-    try{
+    try {
       const auth = getAuth();
       const userCredential = await createUserWithEmailAndPassword(
         auth,
-       formData.email,
+        formData.email,
         formData.password,
-       formData.name,
+        formData.name
       );
-      console.log("usersssssss",userCredential);
+      console.log("usersssssss", userCredential);
       return true;
     } catch (error) {
       console.error("Error creating user with Firebase:", error.message);
@@ -84,11 +108,21 @@ const Signup = () => {
   };
   return (
     <div>
-      <div className="main">
+      <motion.div
+        className="main"
+        initial={{ y: "-100" }}
+        animate={{ y: 0 }}
+        transition={{ duration: 2 }}
+      >
         <div className="burggerimg">
           <img src="/src/assets/image/burggerpices.png" alt="" />
         </div>
-        <div className="loginbox">
+        <motion.div
+          className="loginbox"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 2 }}
+        >
           <LoginBar />
           <div className="input-filed">
             <form>
@@ -117,6 +151,7 @@ const Signup = () => {
                   id="standard-basic"
                   label="mobileno"
                   name="mobileno"
+                  type={"number"}
                   variant="standard"
                   onChange={handleChange}
                   value={formData.mobileno}
@@ -136,6 +171,7 @@ const Signup = () => {
                   id="standard-basic"
                   label="Email"
                   name="email"
+                  type={"email"}
                   onChange={handleChange}
                   variant="standard"
                   value={formData.email}
@@ -157,7 +193,7 @@ const Signup = () => {
                   id="standard-basic"
                   label="password"
                   name="password"
-                  type="password"
+                  type={show ? "text" : "password"}
                   onChange={handleChange}
                   value={formData.password}
                   required
@@ -172,13 +208,19 @@ const Signup = () => {
                     },
                   }}
                 />
+                {show?
+                <div onClick={passwordUnShows}>
                 <VisibilityIcon sx={{ fontSize: 14 }} />
+                </div>:
+                <div onClick={passwordShows}>
+                    <VisibilityOffIcon sx={{ fontSize: 14 }} />
+                  </div>}
               </div>
               <div className="password">
                 <TextField
                   id="standard-basic"
                   label="confirm password"
-                  type="password"
+                  type={shows ? "text" : "password"}
                   name="confirmPassword"
                   variant="standard"
                   onChange={handleChange}
@@ -194,7 +236,15 @@ const Signup = () => {
                     },
                   }}
                 />
-                <VisibilityIcon sx={{ fontSize: 14 }} />
+                {shows ? (
+                  <div onClick={passwordUnview}>
+                     <VisibilityIcon sx={{ fontSize: 14 }} />
+                  </div>
+                ) : (
+                  <div onClick={passwordView}>
+                    <VisibilityOffIcon sx={{ fontSize: 14 }} />
+                  </div>
+                )}
               </div>
               <div className="loginbutton" onClick={handleSubmit}>
                 <Button Login="Signup" />
@@ -205,11 +255,11 @@ const Signup = () => {
               </div>
             </form>
           </div>
-        </div>
+        </motion.div>
         <div className="right-cornner">
           <img src="/src/assets/image/tomatto.png" alt="" />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

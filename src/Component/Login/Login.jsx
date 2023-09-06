@@ -3,14 +3,19 @@ import React, { useState } from "react";
 import MarkEmailUnreadIcon from "@mui/icons-material/MarkEmailUnread";
 import "./Login.css";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import LoginBar from "./Loginbar/LoginBar";
 import Button from "../Button/Button";
 import SocialMedia from "../SocialMedias/SocialMedia";
 import { emailRegex } from "../regex/Regex";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { motion } from "framer-motion";
 const Login = () => {
   const navigate = useNavigate();
+ 
+
+  const [show,setShow]=useState(false)
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -26,6 +31,13 @@ const Login = () => {
     setLoginData({ ...loginData, [name]: value });
     setError({ ...error, [name]: false });
   };
+
+  const unView=()=>{
+    setShow(false)
+  }
+  const view=()=>{
+    setShow(true)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,11 +56,19 @@ const Login = () => {
   };
   return (
     <div>
-      <div className="main">
+      <motion.div className="main"
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      transition={{duration:10,type:'spring'}}
+      >
         <div className="burggerimg">
           <img src="/src/assets/image/burggerpices.png" alt="" />
         </div>
-        <div className="loginbox">
+        <motion.div className="loginbox"
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{delay:1,duration:2,type:"tween"}}
+        >
           <LoginBar />
           <div className="input-filed">
             <form>
@@ -57,6 +77,7 @@ const Login = () => {
                   id="standard-basic"
                   label="Email"
                   name="email"
+                  type={"email"}
                   onChange={handleChange}
                   value={loginData.email}
                   variant="standard"
@@ -79,7 +100,7 @@ const Login = () => {
                   label="Password"
                   onChange={handleChange}
                   name="password"
-                  type="password"
+                  type={show?"text":"Password"}
                   value={loginData.password}
                   variant="standard"
                   required={true}
@@ -93,7 +114,17 @@ const Login = () => {
                     },
                   }}
                 />
-                <VisibilityIcon sx={{ fontSize: 14 }} />
+                {
+                  show?
+                 <div onClick={unView}>
+                   <VisibilityIcon sx={{ fontSize: 14 }} />
+                 </div>
+                 :
+                 <div onClick={view}>
+                   <VisibilityOffIcon sx={{ fontSize: 14 }} />
+                 </div>
+                
+                }
               </div>
               <span className="forgot" onClick={""}>
                 Forgot Password.?
@@ -107,11 +138,11 @@ const Login = () => {
               </div>
             </form>
           </div>
-        </div>
+        </motion.div>
         <div className="right-cornner">
           <img src="/src/assets/image/tomatto.png" alt="" />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
