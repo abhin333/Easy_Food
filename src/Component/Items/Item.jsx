@@ -6,17 +6,15 @@ import "./Item.css";
 import Burger from "./Burggers/Burger";
 import Categeory from "./Categeory/categeory";
 import Cart from "../cart/Cart";
-import { logo_api, imgapi,pizza,chicken } from "../../api";
-import { useNavigate ,useLocation } from "react-router-dom";
+import { logo_api, imgapi, pizza, chicken } from "../../api";
+import { useNavigate, useLocation } from "react-router-dom";
 import { db } from "../../Firebase/Config/Config";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { motion } from "framer-motion";
 
 const Item = () => {
-
-  
+  console.log("itemsssss");
   const navigate = useNavigate();
-
   const logOut = () => {
     const auth = getAuth();
     signOut(auth)
@@ -29,38 +27,47 @@ const Item = () => {
       });
   };
 
-  
-
   const viewCart = () => {
     console.log("ddd");
     navigate("/view");
   };
   const [logo, setLogo] = useState(logo_api);
   const [image, setImage] = useState(imgapi);
-  const [chickenLogo,SetChickenLogo]=useState(chicken);
-  const [pizzaLogo,setPizzaLogo]=useState(pizza);
+  const [chickenLogo, SetChickenLogo] = useState(chicken);
+  const [pizzaLogo, setPizzaLogo] = useState(pizza);
   const [activeIndex, setActiveIndex] = useState(0);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [name, setName] = useState("Burgger");
+  // const [hover, setHover] = useState(false);
+  const [index2, setIndex2] = useState(0);
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
   const categeoryHandle = (name) => {
-    console.log("name", name);
-    setName(name);
   };
-  const clcikHandler=(event,index)=>{
-    navigate("/view",{ state: {event} });
-    console.log("ttttttttt",event);
-  }
-  
+  const clcikHandler = (event, index) => {
+    navigate("/view", { state: { event } });
+  };
+  const mouseEnter = (index,name) => {
+    console.log("jjjjjj");
+    // setHover(true);
+    setName(name);
+    setIndex2(index);
+  };
+
+  const mouseLeave = () => {
+    // setHover(false);
+    setIndex2(-1);
+
+  };
+
   return (
     <div>
-      <motion.div className="main2"
-      initial={{opacity:0}}
-      animate={{opacity:1}}
-      transition={{delay:.100,duration:2,type:'tween'}}
+      <motion.div
+        className="main2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1, duration: 2, type: "tween" }}
       >
         <div className="header2">
           <div className="icons2">
@@ -72,9 +79,7 @@ const Item = () => {
               sx={{ fontSize: "12px" }}
               alt="Remy Sharp"
               // src="/static/images/avatar/1.jpg"
-            >
-              
-            </Avatar>
+            ></Avatar>
           </div>
         </div>
         <p>Choose the Food you love</p>
@@ -94,60 +99,63 @@ const Item = () => {
           </Row>
         </div>
         <p className="categeory">Categeory...</p>
-        <motion.div className="list-items" 
-        initial={{opacity:0}}
-        animate={{opacity:1}}
-        transition={{delay:.10,duration:2}}
-        
+        <motion.div
+          className="list-items"
+          initial={{ x: "-100" }}
+          animate={{ x: 0 }}
+          transition={{ delay: 0.1, duration: 2 }}
+          
         >
-          {logo.map((event, index) => {
-            const url = event.url;
-            const name = event.name;
-            return (
-              <div onClick={() => categeoryHandle(name) }>
-                <Burger url={url} name={name}  isActive={index} data={logo}/>
-              </div>
-            );
-          })}
+          <div className="berger" >
+        
+
+                <Burger data={logo_api} index2={index2} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} />
+          </div>
         </motion.div>
         <span className="burgger-dis">{name}</span>
-        <motion.div className="categeory-list"
-        initial={{opacity:0}}
-        animate={{opacity:1}}
-        transition={{delay:.30,duration:2}}
-        
+        <motion.div
+          className="categeory-list"
+          initial={{ y: "150" }}
+          animate={{ y: 0 }}
+          transition={{ delay: 0.1, duration: 2 }}
         >
-          {name==="Burgger"?image.map((event, index) => {
-            const url = event.url;
-            const name = event.name;
-            const price=event.price;
-            return (
-              <div onClick={()=>clcikHandler(event,index)}>
-                <Categeory url={url} name={name} price={price}  />
-              </div>
-            );
-          }):''}
-          {name==="Chicken"?chickenLogo.map((event, index) => {
-            const url = event.url;
-            const name = event.name;
-            const price=event.price;
+          {name === "Burgger"
+            ? image.map((event, index) => {
+                const url = event.url;
+                const name = event.name;
+                const price = event.price;
+                return (
+                  <div key={event.id} onClick={() => clcikHandler(event, index)}>
+                    <Categeory url={url} name={name} price={price} />
+                  </div>
+                );
+              })
+            : ""}
+          {name === "Chicken"
+            ? chickenLogo.map((event, index) => {
+                const url = event.url;
+                const name = event.name;
+                const price = event.price;
 
-            return (
-              <div onClick={()=>clcikHandler(event,index)}>
-                <Categeory url={url} name={name} price={price}/>
-              </div>
-            );
-          }):''}
-          {name==="Pizza"?pizzaLogo.map((event, index) => {
-            const url = event.url;
-            const name = event.name;
-            const price=event.price;
-            return (
-              <div onClick={()=>clcikHandler(event,index)}>
-                <Categeory url={url} name={name} price={price} />
-              </div>
-            );
-          }):''}
+                return (
+                  <div key={index} onClick={() => clcikHandler(event, index)}>
+                    <Categeory url={url} name={name} price={price} />
+                  </div>
+                );
+              })
+            : ""}
+          {name === "Pizza"
+            ? pizzaLogo.map((event, index) => {
+                const url = event.url;
+                const name = event.name;
+                const price = event.price;
+                return (
+                  <div key={event.id} onClick={() => clcikHandler(event, index)}>
+                    <Categeory url={url} name={name} price={price} />
+                  </div>
+                );
+              })
+            : ""}
         </motion.div>
         <div className="ecllips">
           <div className="circle1"></div>
@@ -155,9 +163,13 @@ const Item = () => {
           <div className="circle3"></div>
           <div className="circle4"></div>
         </div>
-        <div className="cart-pic">
+        <motion.div className="cart-pic"
+         initial={{x:'-100vw'}}
+         animate={{x:0}}
+         transition={{delay:1,duration:2,type:'spring'}}
+        >
           <Cart />
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );

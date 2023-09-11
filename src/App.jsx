@@ -11,20 +11,18 @@ import Cart from "./Component/Pages/cartPage/Cart";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 const App = () => {
+  
   const navigate = useNavigate();
   const [users, setUsers] = useState(false);
   const [loading, setLoading] = useState(true);
   const auth = getAuth();
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUsers(user);
-      setLoading(false);
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, [auth]);
-  console.log("userrrrrrr", users);
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    setUsers(user);
+    setLoading(false);
+  });
+  unsubscribe();
+ console.log("user",users);
+ console.log("logding",loading);
   return (
     <div>
       <Routes>

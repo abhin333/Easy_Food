@@ -11,6 +11,8 @@ import { emailRegex } from "../regex/Regex";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { motion } from "framer-motion";
+import toast, { Toaster } from 'react-hot-toast';
+
 const Login = () => {
   const navigate = useNavigate();
  
@@ -40,18 +42,24 @@ const Login = () => {
   }
 
   const handleSubmit = (e) => {
+    if(loginData.email ==='' ||loginData.password ===''){
+      toast.error("Please Enter Email or Password")
+      return
+    }
     e.preventDefault();
       const auth = getAuth();
       signInWithEmailAndPassword(auth, loginData.email, loginData.password)
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
-          navigate('/items')
+          toast.success("Login Successfuly");
+          setTimeout(()=>{
+            navigate('/items')
+          },1000)
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          alert(errorMessage)
+          toast.error(errorMessage)
         });
   };
   return (
@@ -129,8 +137,9 @@ const Login = () => {
               <span className="forgot" onClick={""}>
                 Forgot Password.?
               </span>
-              <div className="loginbutton">
-                <Button Login="Login" onClick={handleSubmit} />
+              <div className="loginbutton" onClick={handleSubmit} >
+                <Button Login="Login" />
+                <Toaster />
               </div>
               <h4>or</h4>
               <div className="social">

@@ -14,6 +14,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -46,29 +47,33 @@ const passwordUnShows=()=>{
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("name", name, value);
     setFormData({ ...formData, [name]: value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if(formData.mobileno===''||formData.name===''||formData.confirmPassword===''){
+      toast.error("Please Enter The Data",{duration:1500});
+      return 
+    }
     if (formData.password !== formData.confirmPassword) {
-      alert("Password and Confirm Password do not match.");
+      toast.error("Password and Confirm Password do not match.",{duration:1500});
       return;
     }
-
     try {
-      const userAdded = await addUserToFirestore();
-      if (userAdded) {
-        const userCreated = await createUserWithFirebase();
-        if (userCreated) {
-          alert("User created successfully.");
-          navigate("/login");
+        const userCreated = await createUserWithFirebase()
+      if (userCreated) {
+        const userAdded = await addUserToFirestore();
+        if (userAdded) {
+          toast.success("User Created Successfuly");
+          setTimeout(()=>{
+            navigate("/login");
+          },2000)
         } else {
-          alert("This email is already used, or wrong email.");
+          toast.error("This Email is Already Used");
+          
         }
       } else {
-        console.error("Failed to add user to Firestore.");
+        toast.error("This Email is Already Used");
       }
     } catch (error) {
       alert("Error: " + error);
@@ -76,21 +81,26 @@ const passwordUnShows=()=>{
   };
 
   const addUserToFirestore = async () => {
+    
     try {
       const docRef = await addDoc(collection(db, "user"), {
-        name: formData.name,
-        mobileno: formData.mobileno,
+        
+        name: formData.name ,
+        mobileno: formData.mobileno ,
         confirmPassword: formData.confirmPassword,
       });
-      console.log("User added to Firestore:", docRef);
-      return true;
+      
+      console.log("User added to Firestoresss:", docRef);
+      
+        return true;
     } catch (error) {
-      console.error("Error adding user to Firestore:", error.message);
+      toast.error("Error while adding user in Firestore:");
       return false;
     }
   };
 
   const createUserWithFirebase = async () => {
+    
     try {
       const auth = getAuth();
       const userCredential = await createUserWithEmailAndPassword(
@@ -246,8 +256,9 @@ const passwordUnShows=()=>{
                   </div>
                 )}
               </div>
-              <div className="loginbutton" onClick={handleSubmit}>
+              <div className="loginbutton" onClick={handleSubmit} >
                 <Button Login="Signup" />
+                <Toaster />
               </div>
               <h4>or</h4>
               <div className="social">

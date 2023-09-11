@@ -35,10 +35,14 @@ const navigate=useNavigate();
             >
                 <img src="/src/assets/image/image 1.png" alt="" />
             </motion.div>
-            <div className="bike">
+            <motion.div className="bike"
+             initial={{ x: '-0%' }}
+             animate={{ x: '200%' }}
+             transition={{ ease: 'linear', duration: 5, repeat: Infinity }}
+            >
                 <img className='bikes'src="/src/assets/image/pizza-deliver 1.png" alt="bike" />
-            </div>
-        </motion.div>
+             </motion.div>
+             </motion.div>
            
         
     </div>

@@ -8,7 +8,6 @@ const Cart = ({children}) => {
 
   const location = useLocation();
   const  objectToPass  = location.state.event
-  console.log("AAFGUYDFGAD",objectToPass);
   return (
     <div>
       <MyContext.Provider value={{objectToPass}}>

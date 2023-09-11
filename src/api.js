@@ -2,7 +2,7 @@ export const logo_api = [
     {
       "id": 1,
       "name": "Burgger",
-      "url": "./src/assets/logo/burgger.png"
+      "url": "./src/assets/logo/burgger.png",
     },
     {
       "id": 2,
