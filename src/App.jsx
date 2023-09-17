@@ -10,6 +10,10 @@ import Purchase from "./Component/Pages/PurchasePage/Purchase";
 import Cart from "./Component/Pages/cartPage/Cart";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import  ViewCart from "./Component/Pages/cartPage/viewCart";
+import CartView from "./Component/cart_view/CartView";
+import Payment from "./Component/payment/Payment";
+import PaymentPage from "./Component/Pages/Payment/PaymentPage";
 const App = () => {
   
   const navigate = useNavigate();
@@ -31,8 +35,9 @@ const App = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/items" element={<Purchase />} />
         <Route path="/view" element={<Cart />} />
+        <Route path="/cart" element={<ViewCart/>}/>
+        <Route path="/payment" element={<PaymentPage/>}/>
       </Routes>
-
       {/* <Home/> */}
       {/* <LoginPage/> */}
       {/* <SignupPage/> */}

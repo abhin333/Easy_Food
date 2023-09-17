@@ -10,7 +10,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const View = () => {
 
- const navigate= useNavigate()
+const navigate= useNavigate()
 const goHome=()=>{
 navigate('/items')
 }

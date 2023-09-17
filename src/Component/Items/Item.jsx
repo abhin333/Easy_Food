@@ -7,7 +7,7 @@ import Burger from "./Burggers/Burger";
 import Categeory from "./Categeory/categeory";
 import Cart from "../cart/Cart";
 import { logo_api, imgapi, pizza, chicken } from "../../api";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate,  } from "react-router-dom";
 import { db } from "../../Firebase/Config/Config";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { motion } from "framer-motion";
@@ -16,11 +16,12 @@ const Item = () => {
   console.log("itemsssss");
   const navigate = useNavigate();
   const logOut = () => {
-    const auth = getAuth();
+    const auth = getAuth(); 
     signOut(auth)
       .then((res) => {
         alert("do you want to logout");
         navigate("/");
+        localStorage.clear();
       })
       .catch((error) => {
         alert(error);
@@ -163,13 +164,13 @@ const Item = () => {
           <div className="circle3"></div>
           <div className="circle4"></div>
         </div>
-        <motion.div className="cart-pic"
+        {/* <motion.div className="cart-pic"
          initial={{x:'-100vw'}}
          animate={{x:0}}
          transition={{delay:1,duration:2,type:'spring'}}
         >
           <Cart />
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </div>
   );

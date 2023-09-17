@@ -61,8 +61,10 @@ const passwordUnShows=()=>{
     }
     try {
         const userCreated = await createUserWithFirebase()
-      if (userCreated) {
-        const userAdded = await addUserToFirestore();
+        const uid=userCreated.uid;
+      if (userCreated.success) {
+      
+        const userAdded = await addUserToFirestore(uid);
         if (userAdded) {
           toast.success("User Created Successfuly");
           setTimeout(()=>{
@@ -80,17 +82,17 @@ const passwordUnShows=()=>{
     }
   };
 
-  const addUserToFirestore = async () => {
+  const addUserToFirestore = async (uid) => {
     
     try {
-      const docRef = await addDoc(collection(db, "user"), {
+      const docRef =  await setDoc(doc(db, "user", uid), {
         
         name: formData.name ,
         mobileno: formData.mobileno ,
         confirmPassword: formData.confirmPassword,
+        userid:uid,
       });
       
-      console.log("User added to Firestoresss:", docRef);
       
         return true;
     } catch (error) {
@@ -109,10 +111,9 @@ const passwordUnShows=()=>{
         formData.password,
         formData.name
       );
-      console.log("usersssssss", userCredential);
-      return true;
+      let uid=userCredential.user.uid
+      return { success: true, uid: uid };
     } catch (error) {
-      console.error("Error creating user with Firebase:", error.message);
       return false;
     }
   };

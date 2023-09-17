@@ -32,7 +32,7 @@ export const logo_api = [
       },
       {
         "id": 3,
-        "name": "Eag Burgger",
+        "name": "Egg Burgger",
         "price":"$11",
         "url": "./src/assets/image/burgger3.png"
       },
@@ -93,7 +93,8 @@ export const logo_api = [
       {
         "id": 6,
         "name": "Burgger",
-        "url": "./src/assets/image/pizza (5).png"
+        "url": "./src/assets/image/pizza (5).png",
+        "price":"$25",
       }
   ]
 
@@ -136,3 +137,6 @@ export const logo_api = [
         "url": "./src/assets/image/chicken (2).png"
       },
   ]
+
+
+ 
