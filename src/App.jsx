@@ -25,8 +25,6 @@ const App = () => {
     setLoading(false);
   });
   unsubscribe();
- console.log("user",users);
- console.log("logding",loading);
   return (
     <div>
       <Routes>

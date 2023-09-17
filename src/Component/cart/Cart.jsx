@@ -15,7 +15,6 @@ const Cart = () => {
   useEffect(() => {
    
     if (item.length > 0) {
-      console.log("abduyagduad8ig",item);
       updatefirestore(item)
       
     }
@@ -27,7 +26,6 @@ const Cart = () => {
   }
 }
 const pageChange=(item)=>{
-  console.log("ttttttttttttttwwwwwwwwwww",item);
   item.length>0?localStorage.setItem("cartItems", JSON.stringify(item)):''
   navigate("/cart", { state: { name, url, price } });
 
@@ -35,7 +33,6 @@ const pageChange=(item)=>{
 }
 
   const clickHandler = () => {
-    console.log("clciked updated",name);
     const newItem = {
       Cart: {
         item: {
@@ -46,23 +43,16 @@ const pageChange=(item)=>{
       },
     };
    setItem((prev) => [...prev, newItem]);
-   console.log("hvgdsfdfgdf");
   };
   pageChange(item)
-  console.log("oitemsllllllllll", item.length);
-  console.log("oitemsllllllllll222222", item);
 
   const updatefirestore = (item) => {
-    console.log("item=====",item);
     const auth = getAuth();
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         const uid = user.uid;
-        console.log("user///", uid,item);
         const washingtonRef = doc(db, "user", uid);
-        console.log("ttttttttt", );
         await updateDoc(washingtonRef,{item});
-        console.log("length===",item.length);
         
       }
     });

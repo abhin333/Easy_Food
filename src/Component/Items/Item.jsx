@@ -13,7 +13,6 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { motion } from "framer-motion";
 
 const Item = () => {
-  console.log("itemsssss");
   const navigate = useNavigate();
   const logOut = () => {
     const auth = getAuth(); 
@@ -29,7 +28,6 @@ const Item = () => {
   };
 
   const viewCart = () => {
-    console.log("ddd");
     navigate("/view");
   };
   const [logo, setLogo] = useState(logo_api);
@@ -50,14 +48,11 @@ const Item = () => {
     navigate("/view", { state: { event } });
   };
   const mouseEnter = (index,name) => {
-    console.log("jjjjjj");
-    // setHover(true);
     setName(name);
     setIndex2(index);
   };
 
   const mouseLeave = () => {
-    // setHover(false);
     setIndex2(-1);
 
   };
