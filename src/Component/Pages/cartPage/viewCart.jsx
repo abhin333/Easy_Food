@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 const viewCart = () => {
   const location = useLocation();
   const receivedData = location.state;
+
   return (
     <div>
         <CartView data={receivedData}/>

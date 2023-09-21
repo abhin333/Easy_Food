@@ -94,20 +94,42 @@
     display: flex;
     justify-content: space-evenly;
 }
-.price3{
+.price8{
     margin-top: 5rem;
     margin-left: 2rem;
     font-size: medium;
     font-weight: 600;
 }
 .buynow3{
+  position: absolute;
     width: 80px;
     height: 30px;
     border-radius: 20px;
     background-color:rgba(222, 33, 33, 0.79);
     display: flex;
     justify-content: center;
+    right:1rem;
     align-items: center;
     color: white;
+    
+}
+.submitbutton{
+  position:relative;
+  top: 50.5rem;
+  width: 90%;
+  z-index:7;
+  height: 75px;
+  background-color:#4e4e4e;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+
+}
+.price7{
+  position: absolute;
+  color: white;
+  left: 1rem;
+  top:1.5rem;
+  align-items: center;
 }
 }
