@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Email } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../Firebase/Config/Config";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
@@ -64,7 +64,7 @@ const displayRazorpay =()=>{
 
   const paymentObject = new window.Razorpay(options);
   paymentObject.open();
-  localStorage.clear();
+  localStorage.removeItem("cartItems");
 }
 
 
@@ -100,6 +100,18 @@ const displayRazorpay =()=>{
       alert("Enter data");
     }
   };
+  const logOut = () => {
+    const auth = getAuth(); 
+    signOut(auth)
+      .then((res) => {
+        alert("do you want to logout");
+        navigate("/");
+        localStorage.clear();
+      })
+      .catch((error) => {
+        alert(error);
+      });
+    }
   return (
     <div>
       <form>
@@ -113,7 +125,7 @@ const displayRazorpay =()=>{
             <div className="icons5">
               <ShortTextIcon />
             </div>
-            <div className="avathar5">
+            <div className="avathar5" onClick={logOut}>
               <Avatar
                 sizes="12px"
                 alt="Remy Sharp"

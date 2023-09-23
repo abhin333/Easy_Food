@@ -7,6 +7,7 @@ import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../../Firebase/Config/Config";
 import { useNavigate } from "react-router-dom";
 import { async } from "@firebase/util";
+import { getAuth, signOut } from "firebase/auth";
 
 const CartView = (props) => {
   const {id,name}=props;
@@ -64,10 +65,24 @@ const calculation=(dataList2)=>{
   setPrice(sum)
   
 }
+
+  const logOut = () => {
+    const auth = getAuth(); 
+    signOut(auth)
+      .then((res) => {
+        alert("do you want to logout");
+        navigate("/");
+        localStorage.clear();
+      })
+      .catch((error) => {
+        alert(error);
+      });
+    }
+
   return (
     <div>
       <motion.div
-        className="main4" 
+        className="main44" 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1, duration: 2, type: "tween" }}
@@ -77,7 +92,7 @@ const calculation=(dataList2)=>{
           <div className="icons3">
             <ShortTextIcon />
           </div>
-          <div className="avathar">
+          <div className="avathar" onClick={logOut}>
             <Avatar
               sizes="12px"
               sx={{ fontSize: "12px" }}

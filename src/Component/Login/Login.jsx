@@ -51,6 +51,7 @@ const Login = () => {
       signInWithEmailAndPassword(auth, loginData.email, loginData.password)
         .then((userCredential) => {
           const user = userCredential.user;
+          localStorage.setItem('user', user.uid);
           toast.success("Login Successfuly");
           setTimeout(()=>{
             navigate('/items')
@@ -134,7 +135,7 @@ const Login = () => {
                 
                 }
               </div>
-              <span className="forgot" onClick={""}>
+              <span className="forgot">
                 Forgot Password.?
               </span>
               <div className="loginbutton" onClick={handleSubmit} >
