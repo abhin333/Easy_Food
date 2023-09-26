@@ -70,14 +70,19 @@ const calculation=(dataList2)=>{
     const auth = getAuth(); 
     signOut(auth)
       .then((res) => {
-        alert("do you want to logout");
-        navigate("/");
-        localStorage.clear();
+        var result = window.confirm("Do you want to logout?");
+        if (result) {
+          navigate("/");
+          localStorage.clear();
+      } 
       })
       .catch((error) => {
         alert(error);
       });
     }
+  const back =()=>{
+    navigate('/items')
+  }  
 
   return (
     <div>
@@ -89,7 +94,7 @@ const calculation=(dataList2)=>{
         // key={index}
       >
         <div className="header3">
-          <div className="icons3">
+          <div className="icons3" onClick={back}>
             <ShortTextIcon />
           </div>
           <div className="avathar" onClick={logOut}>

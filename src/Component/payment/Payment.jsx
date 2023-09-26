@@ -13,64 +13,55 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
 const Payment = ({ children }) => {
-
   const navigate = useNavigate();
   const location = useLocation();
   const objectToPass = location.state.data;
-  const price=location.state.price
+  const price = location.state.price;
 
-    const [data, setData] = useState(
-      {
-        email: "",
-        address: "",
-        mobile: "",
-        paymentMethod: "Cash On Delivery",
-        items: objectToPass,
-      }
-      
-    );
+  const [data, setData] = useState({
+    email: "",
+    address: "",
+    mobile: "",
+    paymentMethod: "Cash On Delivery",
+    items: objectToPass,
+  });
   const dataHandler = (e) => {
     const { name, value } = e.target;
-    setData({ ...data,[name]: value });
+    setData({ ...data, [name]: value });
   };
-const displayRazorpay =()=>{
-  const options = {
+  const displayRazorpay = () => {
+    const options = {
       key: "rzp_test_t5X4q81qTu1P6e", // Enter the Key ID generated from the Dashboard
-      key_secret:"kgI42J6PsK9qH6v1KZeFWvba",
-      amount: price*100,
+      key_secret: "kgI42J6PsK9qH6v1KZeFWvba",
+      amount: price * 100,
       currency: "INR",
       name: "Fast FOOD.",
       description: "Test Transaction",
       // order_id: '55125',
-      image:'https://upload.wikimedia.org/wikipedia/commons/7/75/Zomato_logo.png',
-      handler:function (response) {
-          // alert(response.razorpay_payment_id);
-          alert("Order placed! Your item will be delivered within 1 hour.");
-            navigate('/items')
-        },
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/7/75/Zomato_logo.png",
+      handler: function (response) {
+        // alert(response.razorpay_payment_id);
+        localStorage.removeItem("cartItems");
+        navigate("/success");
+      },
       prefill: {
-          name: "abhin",
-          email: "abhinpradeepan123@gmail.com",
-          contact: "7902314666",
+        name: "abhin",
+        email: "abhinpradeepan123@gmail.com",
+        contact: "7902314666",
       },
       notes: {
-          address: "Soumya Dey Corporate Office",
+        address: "Soumya Dey Corporate Office",
       },
       theme: {
-          color: "#61dafb",
+        color: "#61dafb",
       },
-      
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
   };
 
-  const paymentObject = new window.Razorpay(options);
-  paymentObject.open();
-  localStorage.removeItem("cartItems");
-}
-
-
-
-  
- 
   const clickHandler = (data) => {
     if (data.email !== "" && data.address !== "" && data.mobile !== "") {
       const auth = getAuth();
@@ -80,16 +71,14 @@ const displayRazorpay =()=>{
           try {
             const washingtonRef = doc(db, "user", uid);
             await updateDoc(washingtonRef, { data });
-            if(data.paymentMethod !=="Cash On Delivery")
-            {
-              displayRazorpay()
-            }
-            else{
+            if (data.paymentMethod !== "Cash On Delivery") {
+              displayRazorpay();
+            } else {
               toast.success("Your order is placed");
-              localStorage.clear();
+              localStorage.removeItem("cartItems");
               setTimeout(() => {
-                  navigate("/items");
-                }, 1000);
+                navigate("/success");
+              }, 1000);
             }
           } catch (error) {
             toast.error(error);
@@ -102,7 +91,7 @@ const displayRazorpay =()=>{
   };
   const logOut = () => {
     localStorage.clear();
-    const auth = getAuth(); 
+    const auth = getAuth();
     signOut(auth)
       .then((res) => {
         alert("do you want to logout");
@@ -111,7 +100,10 @@ const displayRazorpay =()=>{
       .catch((error) => {
         alert(error);
       });
-    }
+  };
+  const back = () => {
+    navigate("/items");
+  };
   return (
     <div>
       <form>
@@ -122,7 +114,7 @@ const displayRazorpay =()=>{
           transition={{ duration: 2 }}
         >
           <div className="header5">
-            <div className="icons5">
+            <div className="icons5" onClick={back}>
               <ShortTextIcon />
             </div>
             <div className="avathar5" onClick={logOut}>
@@ -207,7 +199,7 @@ const displayRazorpay =()=>{
                     />
                   </label>
                   <label>
-                    Gpay
+                    ONLINE
                     <Radio
                       checked={data.paymentMethod === "Gpay"}
                       onChange={dataHandler}

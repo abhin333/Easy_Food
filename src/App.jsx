@@ -15,6 +15,7 @@ import CartView from "./Component/cart_view/CartView";
 import Payment from "./Component/payment/Payment";
 import PaymentPage from "./Component/Pages/Payment/PaymentPage";
 import PageNot from "./Component/Pages/404/PageNot";
+import Success from "./Component/Pages/success/Success";
 const App = () => {
   
   const navigate = useNavigate();
@@ -41,9 +42,11 @@ const App = () => {
         <Route path="/view" element={<Cart />} />
         <Route path="/cart" element={users?<ViewCart/>:<Navigate to="/login" />}/>
         <Route path="/payment" element={users ?<PaymentPage/>:<Navigate to="/login" />}/>
+        <Route path="/success" element={users ? <Success/>:<Navigate to="/login" />}/>
         <Route path="*" element={<PageNot/>}/>
 
       </Routes>
+     
       
     </div>
   );
