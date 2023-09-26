@@ -26,7 +26,7 @@
 
   .right-cornner {
     position: absolute;
-    top: 46rem;
+    top: 50rem;
     left: 14rem;
   }
   .input-filed{
@@ -60,4 +60,8 @@
     h4{
       text-align: center;
     }
+}
+@media (max-width: 380px) {
+
+
 }

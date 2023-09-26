@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { motion } from "framer-motion";
 import toast, { Toaster } from 'react-hot-toast';
+import burggerimg from "../../assets/image/burggerpices.png"
+import tomatto from "../../assets/image/tomatto.png"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -71,7 +73,7 @@ const Login = () => {
       transition={{duration:10,type:'spring'}}
       >
         <div className="burggerimg">
-          <img src="/src/assets/image/burggerpices.png" alt="" />
+          <img src={burggerimg} alt="" />
         </div>
         <motion.div className="loginbox"
         initial={{opacity:0}}
@@ -150,7 +152,7 @@ const Login = () => {
           </div>
         </motion.div>
         <div className="right-cornner">
-          <img src="/src/assets/image/tomatto.png" alt="" />
+          <img src={tomatto} alt="tomatto" />
         </div>
       </motion.div>
     </div>

@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import toast, { Toaster } from 'react-hot-toast';
+import burgger from "../../assets/image/burggerpices.png"
+import tomatto from "../../assets/image/tomatto.png"
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -126,7 +128,7 @@ const passwordUnShows=()=>{
         transition={{ duration: 2 }}
       >
         <div className="burggerimg">
-          <img src="/src/assets/image/burggerpices.png" alt="" />
+          <img src={burgger} alt="burgger" />
         </div>
         <motion.div
           className="loginbox"
@@ -269,7 +271,7 @@ const passwordUnShows=()=>{
           </div>
         </motion.div>
         <div className="right-cornner">
-          <img src="/src/assets/image/tomatto.png" alt="" />
+          <img src={tomatto} alt="tomatto" />
         </div>
       </motion.div>
     </div>

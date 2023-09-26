@@ -101,12 +101,12 @@ const displayRazorpay =()=>{
     }
   };
   const logOut = () => {
+    localStorage.clear();
     const auth = getAuth(); 
     signOut(auth)
       .then((res) => {
         alert("do you want to logout");
         navigate("/");
-        localStorage.clear();
       })
       .catch((error) => {
         alert(error);

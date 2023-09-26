@@ -25,6 +25,7 @@ const App = () => {
     if(user!=null){
       setUsers(user);
     }else{
+      console.log("flase");
       setUsers(false);
     }
   }, [user]);
@@ -33,7 +34,7 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={users?<Navigate to="/items" />:<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={users? <Navigate to="/items" />: <LoginPage />} />
         <Route path="/signup" element={users? <Navigate to="/items" />:<SignupPage />} />
         <Route path="/items" element={users?<Purchase />: <Navigate to="/login" />} />

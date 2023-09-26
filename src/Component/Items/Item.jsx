@@ -15,16 +15,16 @@ import { motion } from "framer-motion";
 const Item = () => {
   const navigate = useNavigate();
   const logOut = () => {
+    localStorage.clear();
     const auth = getAuth(); 
     signOut(auth)
-      .then((res) => {
-        alert("do you want to logout");
-        navigate("/");
-        localStorage.clear();
-      })
-      .catch((error) => {
-        alert(error);
-      });
+    .then((res) => {
+      alert("do you want to logout");
+      navigate("/");
+    })
+    .catch((error) => {
+      alert(error);
+    });
   };
 
   const viewCart = () => {
