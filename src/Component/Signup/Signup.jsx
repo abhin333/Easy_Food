@@ -65,7 +65,6 @@ const passwordUnShows=()=>{
         const userCreated = await createUserWithFirebase()
         const uid=userCreated.uid;
       if (userCreated.success) {
-      
         const userAdded = await addUserToFirestore(uid);
         if (userAdded) {
           toast.success("User Created Successfuly");
@@ -85,21 +84,19 @@ const passwordUnShows=()=>{
   };
 
   const addUserToFirestore = async (uid) => {
-    
     try {
-      const docRef =  await setDoc(doc(db, "user", uid), {
-        
+      
+      const docRef = await setDoc(doc(db, "user", uid), {
+        userid:uid,
         name: formData.name ,
         mobileno: formData.mobileno ,
         confirmPassword: formData.confirmPassword,
-        userid:uid,
       });
       
       
         return true;
     } catch (error) {
       toast.error("Error while adding user in Firestore:");
-      return false;
     }
   };
 

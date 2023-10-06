@@ -20,7 +20,6 @@
   .star {
     position: absolute;
     top: 2rem;
-    right: 7rem;
   }
   .price {
     position: relative;
@@ -28,12 +27,15 @@
     right: 1rem;
     
   }
+  
   .imgsss{
     width: 100px;
     height: 100px;
+
   }
   .price-mark{
     font-weight: 700;
   }
+  
   
 }

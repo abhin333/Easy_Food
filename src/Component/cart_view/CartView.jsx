@@ -50,7 +50,6 @@ const updatedData = data.map((item, i) => ({
 localStorage.setItem("cartItems", JSON.stringify(updatedData));
 
 const buyNow=(data,price)=>{
-  
   navigate('/payment',{state:{data,price}})
 }
 

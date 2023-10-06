@@ -26,12 +26,10 @@ const App = () => {
     if(user!=null){
       setUsers(user);
     }else{
-      console.log("flase");
       setUsers(false);
     }
   }, [user]);
   
-  console.log("userrsss",users);
   return (
     <div>
       <Routes>

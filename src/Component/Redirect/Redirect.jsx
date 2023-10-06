@@ -22,7 +22,7 @@ const Redirect = () => {
     <div>
         <div className="container">
             <div className="delivery-img">
-                <img src={delivery} alt="delivery" className='del'/>
+                <img src={delivery} alt="delivery" className='del' loading='lazy'/>
             </div>
             <p className='p'><span className='s'>"Order placed! Your item will be delivered within 1 hour. </span>Redirect:{count}</p>
         </div>

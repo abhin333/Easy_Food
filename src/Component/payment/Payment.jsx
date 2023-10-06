@@ -29,7 +29,8 @@ const Payment = ({ children }) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
-  const displayRazorpay = () => {
+  const displayRazorpay = async() => {
+    
     const options = {
       key: "rzp_test_t5X4q81qTu1P6e", // Enter the Key ID generated from the Dashboard
       key_secret: "kgI42J6PsK9qH6v1KZeFWvba",
@@ -57,20 +58,25 @@ const Payment = ({ children }) => {
         color: "#61dafb",
       },
     };
-
+  
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
-  };
+
+  }
+
 
   const clickHandler = (data) => {
     if (data.email !== "" && data.address !== "" && data.mobile !== "") {
       const auth = getAuth();
       onAuthStateChanged(auth, async (user) => {
+
         if (user) {
+
           const uid = user.uid;
           try {
             const washingtonRef = doc(db, "user", uid);
             await updateDoc(washingtonRef, { data });
+
             if (data.paymentMethod !== "Cash On Delivery") {
               displayRazorpay();
             } else {
