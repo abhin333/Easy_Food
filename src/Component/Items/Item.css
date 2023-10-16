@@ -143,5 +143,25 @@
   background-color: #c5c5c5;
   border-radius: 50%;
  }
+ .clik{
+  width: 40px;
+  height: 40px;
+  background-color: aqua;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  top: 37rem;
+  left:19rem;
+
+}
+.react-chatbot-kit-chat-message-container{
+  background-color: rgba(137, 43, 226, 0.356);
+}
+.bot-img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  
+}
 
 }

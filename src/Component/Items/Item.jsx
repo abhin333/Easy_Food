@@ -11,6 +11,12 @@ import { useNavigate,  } from "react-router-dom";
 import { db } from "../../Firebase/Config/Config";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { motion } from "framer-motion";
+import Chatbot from "react-chatbot-kit";
+import "react-chatbot-kit/build/main.css";
+import config from "../../config";
+import MessageParser from "../../MessageParser";
+import ActionProvider from "../../ActionProvider";
+
 
 const Item = () => {
   const navigate = useNavigate();
@@ -33,6 +39,19 @@ const Item = () => {
   const viewCart = () => {
     navigate("/view");
   };
+
+  const [isOpen, setIsOpen] = useState(false);
+  const clickHandler = () => {
+    if (isOpen) {
+      setIsOpen(false);
+    } else {
+      setIsOpen(true);
+    }
+  };
+
+
+
+
   const [logo, setLogo] = useState(logo_api);
   const [image, setImage] = useState(imgapi);
   const [chickenLogo, SetChickenLogo] = useState(chicken);
@@ -156,6 +175,22 @@ const Item = () => {
               })
             : ""}
         </motion.div>
+          <div className="clik" onClick={clickHandler}>
+        <img src="https://img.freepik.com/premium-vector/artificial-intelligence-ai-robot-chat-bot-logo-vector-template_8169-533.jpg" alt="" className="bot-img"/>
+      </div>
+      {isOpen ? (
+        <div style={{ display: "flex", float: "right" }}>
+        <Chatbot
+            config={config}
+            messageParser={MessageParser}
+            actionProvider={ActionProvider}
+            headerText='Chatbot'
+            
+          />
+        </div>
+        ) : (
+          ""
+        )}
         <div className="ecllips">
           <div className="circle1"></div>
           <div className="circle2"></div>
