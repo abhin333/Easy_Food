@@ -30,7 +30,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   };
 
   const intialPayment = () => {
-    const botMessage = createChatBotMessage("Don't worry use can use upi or offline... ");
+    const botMessage = createChatBotMessage("Don't worry you can use upi or offline... ");
 
     setState((prev) => ({
       ...prev,

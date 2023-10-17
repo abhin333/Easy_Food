@@ -36,13 +36,13 @@ export const logo_api = [
  export const imgapi=[
     {
       "id": 10,
-      "name": "Burger",
+      "name": "Burgger",
       "price":12,
       "url": burggerimg
     },
     {
         "id": 11,
-        "name": "Veg burger",
+        "name": "Veg Burgger",
         "price":18,
         "url": vegburgger
       },
@@ -107,7 +107,7 @@ export const logo_api = [
       },
       {
         "id": 21,
-        "name": "Burgger",
+        "name": "Pizza",
         "url": pizza5,
         "price":25,
       }

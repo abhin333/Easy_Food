@@ -179,7 +179,7 @@ const Item = () => {
         <img src="https://img.freepik.com/premium-vector/artificial-intelligence-ai-robot-chat-bot-logo-vector-template_8169-533.jpg" alt="" className="bot-img"/>
       </div>
       {isOpen ? (
-        <div style={{ display: "flex", float: "right" }}>
+        <div style={{ display: "flex", float: "right",position:"fixed" }}>
         <Chatbot
             config={config}
             messageParser={MessageParser}
